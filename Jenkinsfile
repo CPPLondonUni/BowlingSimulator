@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+	options {
+		ansiColor('xterm')
+	}
 	stages {
 		stage('Build') {
 			steps {
@@ -7,6 +10,11 @@ pipeline {
 					sh 'cmake ..'
 					sh 'cmake --build  .'
 				}
+			}
+		}
+		stage('Unit Tests') {
+			steps {
+				sh 'build/TestBowlingSimulator'
 			}
 		}
 	}
